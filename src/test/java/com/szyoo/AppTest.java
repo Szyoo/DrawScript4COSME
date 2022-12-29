@@ -9,6 +9,7 @@ import java.util.List;
 import com.szyoo.draw.Draw;
 import com.szyoo.draw.Find;
 import com.szyoo.draw.FindByCSS;
+import com.szyoo.entity.Present;
 
 /**
  * Unit test for simple App.

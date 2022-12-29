@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.szyoo.Present;
+import com.szyoo.entity.Present;
 
 public class JsonConverter {
     /**

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.szyoo.Driver;
-import com.szyoo.Present;
+import com.szyoo.entity.Present;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,8 +17,7 @@ public class Find {
             "//a[text() = 'こちら' and contains(@rel,'nofollow')]",
             "//a[contains(.,'こちら') and contains(@rel,'nofollow')]",
             "//img[contains(@src,'037_123_original_pc_bt4.png')]", "//span[contains(text(),'応募する')]","//input[@value='応募する' and @type='button']");
-    private static List<String> xpath_drew = Arrays.asList("//*[contains(text(),'応募済み')]",
-            "//*[contains(text(),'すでに回答済')]", "//*[contains(.,'すでに回答済')]", "//*[@class='apply-after']","//h4[@class='thanks'and contains(text(),'ご応募ありがとう')]");
+    private static List<String> xpath_drew = Arrays.asList("//td[contains(.,'すでに回答済')]", "//*[@class='apply-after']","//h4[@class='thanks'and contains(text(),'ご応募ありがとう')]");
 
     private static List<String> xpath_toFill = Arrays.asList("//input[@value='次へ進む']",
             "//p[@class='present-apl-btn']/input[@value='応募する']","//input[contains(@value,'上記の内容で応募する') and @type='submit']");
@@ -116,6 +115,9 @@ public class Find {
                 return true;
             }
         }
+        if (FindByCSS.ProduceMemberApplyAfter()) {
+            
+        }
         return false;
     }
 
@@ -151,5 +153,7 @@ public class Find {
     public static boolean findFillFailed() {
         return false;
     }
+
+
 
 }

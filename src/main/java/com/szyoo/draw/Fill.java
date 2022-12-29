@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.szyoo.InputController;
-import com.szyoo.Present;
+import com.szyoo.entity.Present;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

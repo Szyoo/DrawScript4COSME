@@ -1,4 +1,4 @@
-package com.szyoo;
+package com.szyoo.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,33 +108,33 @@ public class Present {
         List<String> link_new = new ArrayList<String>();
         List<String> link_cover = new ArrayList<String>();
         List<Present> result = new ArrayList<Present>();
-        int oldCount = 0; //旧奖品沿用计数
-        int coverCount = 0; //旧奖品覆盖相同新奖品计数
-        int newCount = 0;//新奖品计数
+        int oldCount = 0; // 旧奖品沿用计数
+        int coverCount = 0; // 旧奖品覆盖相同新奖品计数
+        int newCount = 0;// 新奖品计数
         System.out.print("开始整合奖品数据...");
         for (Present p_new : presents_new) {
-            link_new.add(p_new.getLink()); //将所有新奖品的链接添加到一个List中方便对应查找
+            link_new.add(p_new.getLink()); // 将所有新奖品的链接添加到一个List中方便对应查找
         }
         for (Present p_old : presents_old) {
             // 将所有旧奖品信息添加到当前队列
             String link = p_old.getLink();
             result.add(p_old);
-            if (link_new.contains(link)) { 
-                //旧奖品链接在新奖品中也存在，则添加覆盖标记
+            if (link_new.contains(link)) {
+                // 旧奖品链接在新奖品中也存在，则添加覆盖标记
                 link_cover.add(link);
                 coverCount++;
-            }else{
-                //旧奖品链接无直接存在的新奖品，直接沿用
+            } else {
+                // 旧奖品链接无直接存在的新奖品，直接沿用
                 oldCount++;
             }
         }
         for (Present p_new : presents_new) {
             String link = p_new.getLink();
             if (link_cover.contains(link)) {
-                //链接已标记，跳过当前奖品
+                // 链接已标记，跳过当前奖品
                 continue;
             } else {
-                //全新奖品，添加到当前队列
+                // 全新奖品，添加到当前队列
                 result.add(p_new);
                 newCount++;
             }
@@ -143,7 +143,7 @@ public class Present {
         System.out.println("读取到的旧奖品共：" + presents_old.size() + " 个");
         System.out.println("读取到的新奖品共：" + presents_new.size() + " 个");
         System.out.println("整合之后的奖品共：" + result.size() + " 个");
-        System.out.println("其中包含: 已失效旧奖品: "+oldCount+"个, 仍有效的旧奖品沿用: " + coverCount + "个，新增全新奖品: " + newCount + "个");
+        System.out.println("其中包含: 已失效旧奖品: " + oldCount + "个, 仍有效的旧奖品沿用: " + coverCount + "个，新增全新奖品: " + newCount + "个");
         return result;
     }
 

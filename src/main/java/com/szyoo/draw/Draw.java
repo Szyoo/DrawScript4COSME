@@ -5,8 +5,7 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 
 import com.szyoo.Driver;
-// import com.szyoo.InputController;
-import com.szyoo.Present;
+import com.szyoo.entity.Present;
 
 public class Draw {
     /**
@@ -96,23 +95,19 @@ public class Draw {
                 Thread.sleep(sleep);
                 onclickFlag1 = true;
             } catch (Exception e) {
+                // 查找确认个人信息按钮失败
             }
 
-            // if (Find.findDrew()) {
-            //     // 已募集的情况下终止本轮抽奖
-            //     present.setDrew(true);
-            //     present.setDrawDate();
-            //     Present.countDraw();
-            //     if (onclickFlag1 && onclickFlag2) {
-            //         System.out.println(" 抽取成功，记录并开始下一个抽奖");
-            //     } else {
-            //         System.out.println(" 检测到已抽取，记录并跳过");
-            //     }
-            //     return false;
-            // } else if (!(Find.findSendBtn() == null)) {
-            //     // 找到填表界面内的送信按钮时返回true
-            //     return true;
-            // }
+            if (Find.findDrew()) {
+                // 已募集的情况下终止本轮抽奖
+                present.setDrew(true);
+                present.setDrawDate();
+                Present.countDraw();
+                return false;
+            } else if (!(Find.findSendBtn() == null)) {
+                // 找到填表界面内的送信按钮时返回true
+                return true;
+            }
 
             try {
                 Thread.sleep(1*1000);
