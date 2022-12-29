@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.szyoo.draw.Draw;
 import com.szyoo.draw.Find;
+import com.szyoo.draw.FindByCSS;
 
 /**
  * Unit test for simple App.
@@ -31,6 +32,39 @@ class AppTest {
 
         Draw.drawOnce(p);
 
+    }
+
+    @Test
+    void findDrawbyCSSAll() {
+        int success = 0;
+        int failed = 0;
+        List<Present> list = Find.searchPresentToList();
+        for (Present p : list) {
+            Driver.driver.get(p.getLink()); // 跳转奖品介绍界面
+            if (FindByCSS.InfoPageA() != null) {
+                System.out.print("ok1 ");
+                if (FindByCSS.InfoPageImg() != null) {
+                    System.out.print("ok2 ");
+                    success++;
+                } else {
+                    failed++;
+                }
+            } else {
+                failed++;
+            }
+        }
+        System.out.println("失败" + failed + "，成功" + success);
+    }
+
+    @Test
+    void findDrawbyCSS() {
+        Driver.driver.get("https://www.cosme.net/brand/brand_id/353/tieup/00353202212-01/page/page.html");
+        if (FindByCSS.InfoPageA() != null) {
+            System.out.print("ok1 ");
+        }
+        if (FindByCSS.InfoPageImg() != null) {
+            System.out.print("ok2 ");
+        }
     }
 
     @Test
