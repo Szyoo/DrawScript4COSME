@@ -1,4 +1,4 @@
-package com.szyoo.jackson;
+package com.szyoo.io;
 
 import java.util.ArrayList;
 import java.util.List;

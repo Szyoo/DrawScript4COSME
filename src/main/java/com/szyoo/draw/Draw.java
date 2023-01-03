@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
-import com.szyoo.Driver;
 import com.szyoo.entity.Present;
+import com.szyoo.find.ByCss;
+import com.szyoo.find.ByXpath;
 
 public class Draw {
     /**
@@ -75,10 +76,10 @@ public class Draw {
             }
 
             try {
-                WebElement button = FindByCSS.InfoPageA();
+                WebElement button = ByCss.InfoPageA();
 
                 // 此处可获取图片
-                // WebElement img = FindByCSS.InfoPageImg();
+                // WebElement img = ByCss.InfoPageImg();
 
                 // 尝试在找到募集按钮的情况下点击
                 button.click();
@@ -91,18 +92,23 @@ public class Draw {
 
             try {
                 // 尝试在找到确认个人信息按钮的情况下点击
-                FindByCSS.PersonalInfoConfirm().click();
+                ByCss.PersonalInfoConfirm().click();
                 Thread.sleep(sleep);
                 onclickFlag1 = true;
             } catch (Exception e) {
                 // 查找确认个人信息按钮失败
             }
 
-            if (Find.findDrew()) {
+            if (ByXpath.Drew()) {
                 // 已募集的情况下终止本轮抽奖
                 present.setDrew(true);
                 present.setDrawDate();
                 Present.countDraw();
+                if (onclickFlag1 && onclickFlag2) {
+                    System.out.println(" 抽取成功，记录并开始下一个抽奖");
+                } else {
+                    System.out.println(" 检测到已抽取，记录并跳过");
+                }
                 return false;
             } else if (!(Find.findSendBtn() == null)) {
                 // 找到填表界面内的送信按钮时返回true

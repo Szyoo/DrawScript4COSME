@@ -2,14 +2,11 @@ package com.szyoo.draw;
 
 import org.openqa.selenium.WebElement;
 
-import com.szyoo.Driver;
+import com.szyoo.Main;
+
+import com.szyoo.find.ByCss;
 
 public class Login {
-    private static String user_mail_y = "losiner.y@gmail.com";
-    private static String user_pass_y = "ysz960411";
-    private static String user_mail_w = "wcatfish0606@gmail.com";
-    private static String user_pass_w = "wangyunya0606";
-
     public static Boolean loginStatus = false;
 
     /**
@@ -19,17 +16,14 @@ public class Login {
      * @return boolean 完成后返回true，失败返回false
      */
     private static boolean login() {
-        String currentUserMail = user_mail_y;
-        String currentUserPass = user_pass_y;
+        WebElement mail = ByCss.LoginMail();
+        WebElement password = ByCss.LoginPassword();
+        WebElement submit = ByCss.LoginSubmit();
 
-        WebElement mail = FindByCSS.LoginMail();
-        WebElement password = FindByCSS.LoginPassword();
-        WebElement submit = FindByCSS.LoginSubmit();
-
-        if (mail != null && mail.getAttribute("value") != currentUserMail) {
-            mail.sendKeys(currentUserMail);
-            if (password != null && password.getAttribute("value") != currentUserPass) {
-                mail.sendKeys(currentUserPass);
+        if (mail != null && mail.getAttribute("value") != Main.user.getMail()) {
+            mail.sendKeys(Main.user.getMail());
+            if (password != null && password.getAttribute("value") != Main.user.getPassword()) {
+                mail.sendKeys(Main.user.getPassword());
                 if (submit != null) {
                     submit.click();
                     return true;
@@ -45,13 +39,12 @@ public class Login {
     }
 
     public static void checkLogin() {
-        WebElement loginButton = FindByCSS.LoginFrame();
+        WebElement loginButton = ByCss.LoginFrame();
         if (loginButton != null) {
             loginButton.click();
             try {
                 Thread.sleep(3 * 1000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

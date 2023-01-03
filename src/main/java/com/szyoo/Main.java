@@ -2,20 +2,20 @@ package com.szyoo;
 
 import java.util.List;
 
-
 import com.szyoo.draw.Draw;
-import com.szyoo.draw.Find;
+import com.szyoo.draw.Driver;
 import com.szyoo.entity.Present;
-import com.szyoo.jackson.JsonConverter;
+import com.szyoo.entity.User;
+import com.szyoo.io.JsonConverter;
 
 public class Main {
-    public static void main(String[] args) {
+    public static User user = new User();
 
-        
+    public static void main(String[] args) {
 
         System.out.println("\n\n<<<<<<<<<<<<<<<<<<<<<<<<<<\n| Welcome to Take a Shot |\n>>>>>>>> (￣ω￣= >>>>>>>>>\n");
 
-        List<Present> presents = JsonConverter.updateList(Find.searchPresentToList());
+        List<Present> presents = JsonConverter.updateList(Present.searchPresentToList());
 
         Draw.drawAll(presents);
 

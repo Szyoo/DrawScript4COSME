@@ -1,11 +1,11 @@
-package com.szyoo.draw;
+package com.szyoo.find;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.szyoo.Driver;
+import com.szyoo.draw.Driver;
 
-public class FindByCSS {
+public class ByCss {
 
     private static String[] urlInfoPageA = {
             "div.block-info>div.inner>div.box-present>div.col-wrap div.col>div.txtset div.btn a.gatrack", // 图文内嵌按钮
@@ -25,7 +25,7 @@ public class FindByCSS {
     };
     private static String[] urlLoginFrame = {
             "div.inr>div.TB_main .btn-cmn a", // 点击produce member时弹出的登录框按钮
-            "div.usr-auth>ul>li:nth-child(2)>a",//主界面下的登陆按钮
+            "div.usr-auth>ul>li:nth-child(2)>a",// 主界面下的登陆按钮
     };
 
     // 登陆界面邮箱密码输入框，以及提交按钮
@@ -44,7 +44,7 @@ public class FindByCSS {
      * 
      * @param css路径
      */
-    private static WebElement findByCss(String css) {
+    private static WebElement find(String css) {
         WebElement element = null;
         try {
             element = Driver.driver.findElement(By.cssSelector(css));
@@ -60,7 +60,7 @@ public class FindByCSS {
     public static WebElement InfoPageA() {
         WebElement element = null;
         for (String url : urlInfoPageA) {
-            element = findByCss(url);
+            element = find(url);
             if (element != null) {
                 break;
             }
@@ -78,7 +78,7 @@ public class FindByCSS {
     public static WebElement InfoPageImg() {
         WebElement element = null;
         for (String url : urlInfoPageImg) {
-            element = findByCss(url);
+            element = find(url);
             if (element != null) {
                 break;
             }
@@ -96,7 +96,7 @@ public class FindByCSS {
     public static WebElement LoginFrame() {
         WebElement element = null;
         for (String url : urlLoginFrame) {
-            element = findByCss(url);
+            element = find(url);
             if (element != null) {
                 break;
             }
@@ -108,7 +108,7 @@ public class FindByCSS {
      * 通过Css查找登陆页面邮箱输入，成功返回登录按钮<input>元素对象，失败返回null
      */
     public static WebElement LoginMail() {
-        WebElement element = findByCss(urlMail);
+        WebElement element = find(urlMail);
         return element;
     }
 
@@ -116,7 +116,7 @@ public class FindByCSS {
      * 通过Css查找登陆页面密码输入，成功返回登录按钮<input>元素对象，失败返回null
      */
     public static WebElement LoginPassword() {
-        WebElement element = findByCss(urlPassword);
+        WebElement element = find(urlPassword);
         return element;
     }
 
@@ -124,7 +124,7 @@ public class FindByCSS {
      * 通过Css查找登陆页面登陆按钮，成功返回登录按钮<input>元素对象，失败返回null
      */
     public static WebElement LoginSubmit() {
-        WebElement element = findByCss(urlLoginSubmit);
+        WebElement element = find(urlLoginSubmit);
         return element;
     }
 
@@ -132,7 +132,7 @@ public class FindByCSS {
      * 通过Css查找ProduceMember応募済み灰色按钮，成功返回True，失败返回False
      */
     public static Boolean ProduceMemberApplyAfter() {
-        WebElement element = findByCss(urlProduceMemberApplyAfter);
+        WebElement element = find(urlProduceMemberApplyAfter);
         if (element == null) {
             return false;
         } else {
@@ -144,7 +144,8 @@ public class FindByCSS {
      * 通过Css查找个人信息界面次へ進む按钮，成功返回按钮<input>元素对象，失败返回null
      */
     public static WebElement PersonalInfoConfirm() {
-        WebElement element = findByCss(urlPersonalInfoConfirm);
+        WebElement element = find(urlPersonalInfoConfirm);
         return element;
     }
+
 }

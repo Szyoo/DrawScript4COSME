@@ -1,4 +1,4 @@
-package com.szyoo;
+package com.szyoo.io;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -51,6 +51,23 @@ public class InputController {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 num = Integer.parseInt(br.readLine());
                 if (numList.contains(num)) {
+                    // br.close();
+                    return num;
+                }
+            } catch (Exception e) {
+            }
+            System.out.println("输入有误，请重新输入！");
+        }
+    }
+
+    public static int chooseUser() {
+        System.out.println("请选择当前用户>\n1. 楊聖哲\n2. 王韻雅");
+        int num = -1;
+        while (true) {
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                num = Integer.parseInt(br.readLine());
+                if (num == 1 || num == 2) {
                     // br.close();
                     return num;
                 }

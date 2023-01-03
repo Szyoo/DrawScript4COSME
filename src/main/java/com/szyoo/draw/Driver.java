@@ -1,4 +1,4 @@
-package com.szyoo;
+package com.szyoo.draw;
 
 import java.util.Set;
 

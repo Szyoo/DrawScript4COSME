@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.szyoo.draw.Driver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -95,6 +96,36 @@ public class Present {
 
     public void setDrawDate() {
         this.drawDate = new Date();
+    }
+
+    /**
+     * 在已打开页面上查找所有可用奖品信息，并将[链接，文本，当前时间]汇总为Present的List
+     * 
+     * @return
+     */
+    public static List<Present> searchPresentToList() {
+        System.out.println("开始识别奖品...\n请稍等...");
+        Driver.driver.get("https://www.cosme.net/present");
+        Driver.closeOtherWindow(Driver.driver);
+
+        List<WebElement> presents_special = Driver.driver
+                .findElements(By.cssSelector("a[href*='present/detail/present_id']"));
+        List<WebElement> presents_normal = Driver.driver
+                .findElements(By.cssSelector("a[href*='/as.iy.impact-ad.jp/ct?id=']"));
+
+        List<Present> presents = new ArrayList<Present>();
+
+        Present.addElement(presents_special, presents);
+        Present.addElement(presents_normal, presents);
+
+        Driver.driver.get("https://www.cosme.net/brandfanclub/present");
+        Driver.closeOtherWindow(Driver.driver);
+
+        List<WebElement> presents_brand = Driver.driver.findElements(
+                By.cssSelector("div[class=psnt]>ul[class=clearfix]>li>a[href*='cosme.net/brand/brand_id']"));
+        Present.addElement(presents_brand, presents);
+        System.out.println("识别完成！共识别到奖品：" + Present.getCall() + " 个");
+        return presents;
     }
 
     /**

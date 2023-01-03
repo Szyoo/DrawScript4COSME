@@ -1,4 +1,4 @@
-package com.szyoo.jackson;
+package com.szyoo.io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

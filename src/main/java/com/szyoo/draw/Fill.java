@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.szyoo.InputController;
 import com.szyoo.entity.Present;
+import com.szyoo.find.ByCss;
+import com.szyoo.find.ByXpath;
+import com.szyoo.io.InputController;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +27,13 @@ public class Fill {
             "自宅", "大切だと思う", "日差しの強い季節", "歯ブラシ", "上記を確認の上、応募する", "うるおう", "全てのブランドをお気に入り登録して応募", "言葉だけは知っている",
             "日焼け止めを使用している", "スキンケア", "「白髪」は全くない", "満足している", "応募にあたり");
 
+
+
+            "form>table>tbody>tr>td>table>tbody>tr>td>table>tbody"//每个Question区块
+"form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label"//区块下的每个文本标签
+"form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label>input:first-child"//区块下的每个复选框　[type=checkbox]
+"form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label>input:first-child"//区块下的每个复选框　[type=radio]
+
     /**
      * 填表完成后调用，点击送信按钮并判断处理送信结果
      * 
@@ -36,14 +45,14 @@ public class Fill {
             System.out.print("填写完成..");
             Find.findSendBtn().click();
             if (checkSend(driver)) {
-                if (Find.findOvertime()) {
+                if (ByXpath.Overtime()) {
                     return false;
                 } else {
-                present.setDrew(true);
-                present.setDrawDate();
-                Present.countDraw();
-                System.out.println("送信成功..记录并开始下一个抽奖");   
-                return true;
+                    present.setDrew(true);
+                    present.setDrawDate();
+                    Present.countDraw();
+                    System.out.println("送信成功..记录并开始下一个抽奖");
+                    return true;
                 }
             } else {
                 // 送信失败，可能是有必填项目未填写，手动填写后在控制台确认
@@ -57,11 +66,11 @@ public class Fill {
     }
 
     private static Boolean checkSend(WebDriver driver) {
-        if (Find.findDrew()) {
+        if (ByXpath.Drew()) {
             return true;
-        }else if(Find.findSendBtn() == null) {
+        } else if (Find.findSendBtn() == null) {
             try {
-                Find.findDrawBtn(); // 回到了最初品牌界面说明已经抽完
+                ByCss.InfoPageA(); // 回到了最初品牌界面说明已经抽完
                 return true;
             } catch (Exception e1) {
             }
