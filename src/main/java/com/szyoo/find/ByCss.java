@@ -39,6 +39,13 @@ public class ByCss {
     // 个人信息界面次へ進む按钮
     private static String urlPersonalInfoConfirm = "#main form>p.enquete-apl-btn>input.btn-green";
 
+    // 填表页面送信按钮
+    private static String[] urlSendBtn = {
+        "form>input[alt='送信']", // 普通填表绿色送信input按钮
+        // "div.usr-auth>ul>li:nth-child(2)>a",主界面下的登陆按钮
+};
+
+
     /**
      * 通过CssSelector查找元素，成功返回元素对象，失败返回null
      * 
@@ -147,5 +154,20 @@ public class ByCss {
         WebElement element = find(urlPersonalInfoConfirm);
         return element;
     }
+
+    /**
+     * 通过Css查找填表界面送信按钮，成功返回按钮<input>元素对象，失败返回null
+     */
+    public static WebElement FillSendBtn() {
+        WebElement element = null;
+        for (String url : urlSendBtn) {
+            element = find(url);
+            if (element != null) {
+                break;
+            }
+        }
+        return element;
+    }
+
 
 }

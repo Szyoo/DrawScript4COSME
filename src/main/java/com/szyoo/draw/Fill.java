@@ -29,10 +29,10 @@ public class Fill {
 
 
 
-            "form>table>tbody>tr>td>table>tbody>tr>td>table>tbody"//每个Question区块
-"form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label"//区块下的每个文本标签
-"form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label>input:first-child"//区块下的每个复选框　[type=checkbox]
-"form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label>input:first-child"//区块下的每个复选框　[type=radio]
+//             "form>table>tbody>tr>td>table>tbody>tr>td>table>tbody"//每个Question区块
+// "form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label"//区块下的每个文本标签
+// "form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label>input:first-child"//区块下的每个复选框　[type=checkbox]
+// "form>table>tbody>tr>td>table>tbody>tr>td>table>tbody >tr label>input:first-child"//区块下的每个复选框　[type=radio]
 
     /**
      * 填表完成后调用，点击送信按钮并判断处理送信结果
@@ -43,7 +43,7 @@ public class Fill {
     public static Boolean send(WebDriver driver, Present present) {
         try {
             System.out.print("填写完成..");
-            Find.findSendBtn().click();
+            ByCss.FillSendBtn().click();
             if (checkSend(driver)) {
                 if (ByXpath.Overtime()) {
                     return false;
@@ -68,7 +68,7 @@ public class Fill {
     private static Boolean checkSend(WebDriver driver) {
         if (ByXpath.Drew()) {
             return true;
-        } else if (Find.findSendBtn() == null) {
+        } else if (ByCss.FillSendBtn() == null) {
             try {
                 ByCss.InfoPageA(); // 回到了最初品牌界面说明已经抽完
                 return true;

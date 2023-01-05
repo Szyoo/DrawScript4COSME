@@ -110,7 +110,7 @@ public class Draw {
                     System.out.println(" 检测到已抽取，记录并跳过");
                 }
                 return false;
-            } else if (!(Find.findSendBtn() == null)) {
+            } else if (!(ByCss.FillSendBtn() == null)) {
                 // 找到填表界面内的送信按钮时返回true
                 return true;
             }
